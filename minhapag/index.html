@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head> <!-- Declaração da linguagem do documento -->
+  <meta charset="UTF-8"> <!-- caractere de codificação -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsividade -->
+  <title>Portfólio - Lucas Matheus</title> <!-- Título da página -->
+  <link rel="stylesheet" href="style.css"> <!-- link para o arquivo CSS -->
+</head>
+<body> <!-- corpo da página -->
+  <!-- nav bar com os links -->
+  <nav>
+    <a href="sobre.html">Sobre</a>
+    <a href="habilidades.html">Habilidades</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="contatos.html">Contato</a>
+  </nav>
+  <header> <!-- Aqui vai o header com o nome e solicitando o usuario digitar o seu nome. -->
+    <h1>👋 Olá, eu sou Dev. Lucas Matheus</h1>
+    <p>Bem-vindo ao meu perfil no GitHub! Sou um desenvolvedor apaixonado por 
+      tecnologia e programação. 
+      Aqui você encontrará alguns dos projetos em que estou trabalhando, 
+      além de informações sobre mim e minhas habilidades.</p>
+    <p>Digite seu nome para receber uma saudação personalizada:</p>
+    <input type="text" id="nomeUsuario" placeholder="Digite seu nome">
+    <button onclick="saudacao()">Saudar</button>
+    <p id="mensagemSaudacao"></p> <!-- emite uma mensagemSaudacao personalizada. -->
+    <img src="img/fundo1.jpg" alt="Entre em contato" class="imagem-pagina">
+  </header>
+<footer>
+    &copy; 2025 Lucas Matheus - Todos os direitos reservados.
+  </footer>
+
+<!-- Aqui vai o código JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
