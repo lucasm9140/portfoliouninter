@@ -107,10 +107,35 @@ function startTimer(){
   elQTimer.textContent = String(state.timeLeft);
   state.timer = setInterval(()=>{
     state.timeLeft--;
+    timeBonusCarry: 0, // acumula bônus de tempo para a próxima pergunta
     elQTimer.textContent = String(state.timeLeft);
+    const elQTimeBonus = $('#q-timebonus');
     if(state.timeLeft<=0){ stopTimer(); showAnswer(false); }
   },1000);
+  state.timeLeft = state.config.timePerQuestion + (state.timeBonusCarry || 0);
+  elQTimer.textContent = String(state.timeLeft);
+  renderTimeBonusBadge();
+  // atualiza bônus de tempo para a próxima questão
+  if(correct){
+    state.timeBonusCarry = Math.min(
+      (state.timeBonusCarry || 0) + (state.config.timeBonusPerHit || 0),
+      state.config.timeBonusMax || 0
+    );
+  } else {
+    state.timeBonusCarry = Math.max(
+      0,
+      (state.timeBonusCarry || 0) - (state.config.timeBonusDecayOnWrong || 0)
+    );
 }
+renderTimeBonusBadge();
+
+}
+function renderTimeBonusBadge(){
+  const b = state.timeBonusCarry;
+  if(!elQTimeBonus) return;
+  elQTimeBonus.textContent = b > 0 ? `+${b}s` : '';
+}
+
 function stopTimer(){ if(state.timer){ clearInterval(state.timer); state.timer=null } }
 
 function showAnswer(fromConfirm){

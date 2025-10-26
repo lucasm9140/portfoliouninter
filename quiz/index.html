@@ -16,10 +16,14 @@
   -->
 </head>
 <body>
-  <header class="site-header container">
-    <h1>🧠 Quiz de Tecnologia</h1>
-    <p class="subtitle">Programação • Redes • Segurança • IA • Cloud</p>
-  </header>
+ <header class="site-header container">
+  <h1 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <img src="../assets/img/logo.png" alt="AxionTechI9" style="height:28px;border-radius:6px">
+    🧠 Quiz de Tecnologia — <span style="color:var(--accent)">AxionTechI9</span>
+  </h1>
+  <p class="subtitle">Programação • Redes • Segurança • IA • Cloud</p>
+</header>
+
 
   <div class="container">
     <div class="ad-slot" id="ad-topo"><!-- anúncio topo (depois) --></div>
@@ -70,7 +74,7 @@
       <div class="statusbar">
         <div>Questão <span id="q-number">1</span>/<span id="q-total">10</span></div>
         <div>Tempo: <span id="q-timer">20</span>s</div>
-        <div>Pontos: <span id="q-score">0</span></div>
+        <div>Pontos: <span id="q-score">0</span> <span id="q-timebonus" class="badge-timebonus"></span></div>
       </div>
       <h2 id="q-title">Pergunta aqui...</h2>
       <ul id="q-options" class="options" role="radiogroup" aria-label="Alternativas"></ul>
@@ -104,13 +108,18 @@
   </footer>
 
   <script>
-    window.QUIZ_CONFIG = {
-      timePerQuestion: 20,
-      basePoints: 100,
-      speedBonusMax: 50,
-      allowKeyboard: true
-    };
-  </script>
+  window.QUIZ_CONFIG = {
+    timePerQuestion: 20,
+    basePoints: 100,
+    speedBonusMax: 50,
+    allowKeyboard: true,
+    /* ▼ NOVO: bônus de tempo controlado */
+    timeBonusPerHit: 2,       // +2s por acerto
+    timeBonusMax: 5,          // até +5s acumulados
+    timeBonusDecayOnWrong: 1  // -1s do acumulado quando errar
+  };
+</script>
+
   <script src="./assets/quiz.js"></script>
 </body>
 </html>
