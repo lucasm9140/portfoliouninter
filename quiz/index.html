@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Quiz de Tecnologia — AxionTechI9</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quiz de Tecnologia: Programação, Redes, Segurança, IA e Cloud. Teste seus conhecimentos!">
+  <link rel="icon" href="/portfoliouninter/assets/img/favicon.png">
+  <link rel="stylesheet" href="./assets/quiz.css">
+  <!-- (Opcional) Google Analytics 4
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  -->
+  <!-- (Futuro) AdSense
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=SEU_CLIENTE" crossorigin="anonymous"></script>
+  -->
+</head>
+<body>
+  <header class="site-header container">
+    <h1>🧠 Quiz de Tecnologia</h1>
+    <p class="subtitle">Programação • Redes • Segurança • IA • Cloud</p>
+  </header>
+
+  <div class="container">
+    <div class="ad-slot" id="ad-topo"><!-- anúncio topo (depois) --></div>
+  </div>
+
+  <main class="container">
+    <!-- Tela inicial -->
+    <section id="screen-home" class="card">
+      <h2>Comece seu desafio</h2>
+      <div class="grid">
+        <div>
+          <label class="label">Categoria</label>
+          <select id="select-category" class="input">
+            <option value="todas">Todas</option>
+            <option value="Programação">Programação</option>
+            <option value="Redes">Redes</option>
+            <option value="Segurança">Segurança</option>
+            <option value="IA">IA</option>
+            <option value="Cloud">Cloud</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">Nível</label>
+          <select id="select-level" class="input">
+            <option value="misto">Misto</option>
+            <option value="facil">Fácil</option>
+            <option value="medio">Médio</option>
+            <option value="dificil">Difícil</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">Nº de questões</label>
+          <select id="select-amount" class="input">
+            <option>10</option>
+            <option>15</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="btn-start" class="btn primary">Iniciar</button>
+        <a href="/portfoliouninter/" class="btn">Voltar ao Portfólio</a>
+      </div>
+      <p class="muted">Cada acerto vale 100 pontos + bônus de velocidade. Use o tempo com sabedoria!</p>
+    </section>
+
+    <!-- Tela do jogo -->
+    <section id="screen-game" class="card hidden" aria-live="polite">
+      <div class="statusbar">
+        <div>Questão <span id="q-number">1</span>/<span id="q-total">10</span></div>
+        <div>Tempo: <span id="q-timer">20</span>s</div>
+        <div>Pontos: <span id="q-score">0</span></div>
+      </div>
+      <h2 id="q-title">Pergunta aqui...</h2>
+      <ul id="q-options" class="options" role="radiogroup" aria-label="Alternativas"></ul>
+      <div class="actions">
+        <button id="btn-confirm" class="btn primary">Confirmar</button>
+        <button id="btn-next" class="btn hidden">Próxima</button>
+      </div>
+      <div id="q-feedback" class="feedback" aria-live="polite"></div>
+    </section>
+
+    <!-- Tela de resultado -->
+    <section id="screen-result" class="card hidden">
+      <h2>Resultado</h2>
+      <p><strong>Acertos:</strong> <span id="r-hits">0</span> / <span id="r-total">0</span></p>
+      <p><strong>Pontuação:</strong> <span id="r-score">0</span></p>
+      <p><strong>Melhor pontuação (este navegador):</strong> <span id="r-best">0</span></p>
+      <div class="actions">
+        <button id="btn-restart" class="btn">Jogar de novo</button>
+        <a id="btn-share" class="btn" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>
+        <a class="btn" href="/portfoliouninter/" rel="noopener">Voltar ao Portfólio</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="container">
+    <div class="ad-slot" id="ad-rodape"><!-- anúncio rodapé (depois) --></div>
+  </div>
+
+  <footer class="site-footer container">
+    <p>Desenvolvido por Dev. Lucas Matheus — AxionTechI9</p>
+  </footer>
+
+  <script>
+    window.QUIZ_CONFIG = {
+      timePerQuestion: 20,
+      basePoints: 100,
+      speedBonusMax: 50,
+      allowKeyboard: true
+    };
+  </script>
+  <script src="./assets/quiz.js"></script>
+</body>
+</html>
