@@ -13,6 +13,7 @@ const state = {
   timeLeft: 0,
   score: 0,
   hits: 0,
+  timeBonusCarry: 0, // acumula bônus de tempo para a PRÓXIMA questão
   config: window.QUIZ_CONFIG || {timePerQuestion:20, basePoints:100, speedBonusMax:50, allowKeyboard:true}
 };
 
@@ -32,6 +33,7 @@ const elQOpts  = $('#q-options');
 const elQTimer = $('#q-timer');
 const elQScore = $('#q-score');
 const elQFeed  = $('#q-feedback');
+const elQTimeBonus = $('#q-timebonus'); // <-- REFERÊNCIA CORRETA DO BADGE
 
 const elRHits  = $('#r-hits');
 const elRTot   = $('#r-total');
@@ -66,9 +68,12 @@ function buildRound(){
   state.selectedIndex = null;
   state.score = 0;
   state.hits  = 0;
+  // mantém o carry entre perguntas; no início da rodada, zere se quiser:
+  state.timeBonusCarry = 0;
 
   elQTot.textContent = String(amt);
   elQScore.textContent = '0';
+  renderTimeBonusBadge();
 }
 
 function renderQuestion(){
@@ -101,39 +106,24 @@ function selectOption(li){
   state.selectedIndex = parseInt(li.dataset.idx,10);
 }
 
+function renderTimeBonusBadge(){
+  const b = state.timeBonusCarry || 0;
+  if(!elQTimeBonus) return;
+  elQTimeBonus.textContent = b > 0 ? `+${b}s` : '';
+}
+
 function startTimer(){
   stopTimer();
-  state.timeLeft = state.config.timePerQuestion;
-  elQTimer.textContent = String(state.timeLeft);
-  state.timer = setInterval(()=>{
-    state.timeLeft--;
-    timeBonusCarry: 0, // acumula bônus de tempo para a próxima pergunta
-    elQTimer.textContent = String(state.timeLeft);
-    const elQTimeBonus = $('#q-timebonus');
-    if(state.timeLeft<=0){ stopTimer(); showAnswer(false); }
-  },1000);
+  // aplica o bônus ACUMULADO nesta questão
   state.timeLeft = state.config.timePerQuestion + (state.timeBonusCarry || 0);
   elQTimer.textContent = String(state.timeLeft);
   renderTimeBonusBadge();
-  // atualiza bônus de tempo para a próxima questão
-  if(correct){
-    state.timeBonusCarry = Math.min(
-      (state.timeBonusCarry || 0) + (state.config.timeBonusPerHit || 0),
-      state.config.timeBonusMax || 0
-    );
-  } else {
-    state.timeBonusCarry = Math.max(
-      0,
-      (state.timeBonusCarry || 0) - (state.config.timeBonusDecayOnWrong || 0)
-    );
-}
-renderTimeBonusBadge();
 
-}
-function renderTimeBonusBadge(){
-  const b = state.timeBonusCarry;
-  if(!elQTimeBonus) return;
-  elQTimeBonus.textContent = b > 0 ? `+${b}s` : '';
+  state.timer = setInterval(()=>{
+    state.timeLeft--;
+    elQTimer.textContent = String(state.timeLeft);
+    if(state.timeLeft<=0){ stopTimer(); showAnswer(false); }
+  },1000);
 }
 
 function stopTimer(){ if(state.timer){ clearInterval(state.timer); state.timer=null } }
@@ -159,9 +149,23 @@ function showAnswer(fromConfirm){
     const gained = state.config.basePoints + speedBonus;
     state.score += gained;
     elQFeed.textContent = `✅ Correto! +${state.config.basePoints} (básico) +${speedBonus} (velocidade). ${q.explicacao||''}`;
-  }else{
+
+    // atualiza bônus de tempo PARA A PRÓXIMA questão
+    state.timeBonusCarry = Math.min(
+      (state.timeBonusCarry || 0) + (state.config.timeBonusPerHit || 0),
+      state.config.timeBonusMax || 0
+    );
+  } else {
     elQFeed.textContent = `❌ Resposta incorreta. ${q.explicacao||''}`;
+
+    // errou? decai o carry
+    state.timeBonusCarry = Math.max(
+      0,
+      (state.timeBonusCarry || 0) - (state.config.timeBonusDecayOnWrong || 0)
+    );
   }
+  renderTimeBonusBadge();
+
   elQScore.textContent = String(state.score);
   btnConfirm.disabled = true;
   btnNext.classList.remove('hidden');
@@ -184,7 +188,7 @@ function finishRound(){
   if(state.score>best){ localStorage.setItem('quiz_best', String(state.score)); elRBest.textContent = String(state.score)+' (novo recorde!)'; }
   else { elRBest.textContent = String(best); }
 
-  const msg = encodeURIComponent(`Terminei o Quiz de Tecnologia! Pontos: ${state.score} | Acertos: ${state.hits}/${total} — Tente também: ${location.href}`);
+  const msg = encodeURIComponent(`Terminei o Quiz de Tecnologia da AxionTechI9! Pontos: ${state.score} | Acertos: ${state.hits}/${total} — Tente também: ${location.href}`);
   elShare.href = `https://wa.me/?text=${msg}`;
 }
 
