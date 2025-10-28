@@ -13,19 +13,24 @@ const state = {
   timeLeft: 0,
   score: 0,
   hits: 0,
-  timeBonusCarry: 0, // acumula bônus de tempo para a PRÓXIMA questão
-  config: window.QUIZ_CONFIG || {timePerQuestion:20, basePoints:100, speedBonusMax:50, allowKeyboard:true}
+  // carry pode ser positivo (acertos) ou negativo (erros); aplica na PRÓXIMA questão
+  timeBonusCarry: 0,
+  gameOver: false,
+  config: {
+    timePerQuestion: 20,
+    basePoints: 100,
+    speedBonusMax: 50,
+    allowKeyboard: true,
+    ...window.QUIZ_CONFIG // mantém qualquer ajuste vindo do HTML
+  }
 };
 
-async function loadQuestions(){
-  const res = await fetch('./data/questions.json',{cache:'no-store'});
-  state.allQuestions = await res.json();
-}
-
+// Screens
 const screenHome   = $('#screen-home');
 const screenGame   = $('#screen-game');
 const screenResult = $('#screen-result');
 
+// Game elements
 const elQNum   = $('#q-number');
 const elQTot   = $('#q-total');
 const elQTitle = $('#q-title');
@@ -33,27 +38,40 @@ const elQOpts  = $('#q-options');
 const elQTimer = $('#q-timer');
 const elQScore = $('#q-score');
 const elQFeed  = $('#q-feedback');
-const elQTimeBonus = $('#q-timebonus'); // <-- REFERÊNCIA CORRETA DO BADGE
+const elQTimeBonus = $('#q-timebonus');
 
+// Result elements
+const elRTitle = $('#r-title');
 const elRHits  = $('#r-hits');
 const elRTot   = $('#r-total');
 const elRScore = $('#r-score');
 const elRBest  = $('#r-best');
+const elRBoard = $('#r-board');
 const elShare  = $('#btn-share');
 
+// Controls
 const btnStart   = $('#btn-start');
 const btnConfirm = $('#btn-confirm');
 const btnNext    = $('#btn-next');
 const btnRestart = $('#btn-restart');
 
+// Selects
 const selCategory = $('#select-category');
 const selLevel    = $('#select-level');
 const selAmount   = $('#select-amount');
 
-function show(el){ el.classList.remove('hidden') }
-function hide(el){ el.classList.add('hidden') }
+function show(el){ el.classList.remove('hidden'); }
+function hide(el){ el.classList.add('hidden'); }
 
+async function loadQuestions(){
+  const res = await fetch('./data/questions.json',{cache:'no-store'});
+  state.allQuestions = await res.json();
+}
+
+// ================= ROUND =================
 function buildRound(){
+  state.gameOver = false;
+
   const cat = selCategory.value;   // 'todas' | categoria
   const lvl = selLevel.value;      // 'misto' | 'facil' | 'medio' | 'dificil'
   const amt = parseInt(selAmount.value,10);
@@ -68,8 +86,8 @@ function buildRound(){
   state.selectedIndex = null;
   state.score = 0;
   state.hits  = 0;
-  // mantém o carry entre perguntas; no início da rodada, zere se quiser:
-  state.timeBonusCarry = 0;
+  // se quiser resetar o carry a cada rodada, descomente:
+  // state.timeBonusCarry = 0;
 
   elQTot.textContent = String(amt);
   elQScore.textContent = '0';
@@ -87,8 +105,10 @@ function renderQuestion(){
   elQOpts.innerHTML = '';
   ops.forEach((op, i)=>{
     const li = document.createElement('li');
-    li.setAttribute('role','radio'); li.setAttribute('tabindex','0');
-    li.dataset.idx = op.idx; li.textContent = `${i+1}) ${op.text}`;
+    li.setAttribute('role','radio');
+    li.setAttribute('tabindex','0');
+    li.dataset.idx = op.idx;
+    li.textContent = `${i+1}) ${op.text}`;
     li.addEventListener('click', ()=>selectOption(li));
     li.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'||ev.key===' '){ev.preventDefault(); selectOption(li)} });
     elQOpts.appendChild(li);
@@ -106,32 +126,54 @@ function selectOption(li){
   state.selectedIndex = parseInt(li.dataset.idx,10);
 }
 
+// badge mostra +Xs ou -Xs acumulado para a PRÓXIMA questão
 function renderTimeBonusBadge(){
-  const b = state.timeBonusCarry || 0;
   if(!elQTimeBonus) return;
-  elQTimeBonus.textContent = b > 0 ? `+${b}s` : '';
+  const b = state.timeBonusCarry || 0;
+  elQTimeBonus.textContent = b === 0 ? '' : `${b > 0 ? '+' : ''}${b}s`;
 }
 
+// ================= TIMER =================
 function startTimer(){
   stopTimer();
-  // aplica o bônus ACUMULADO nesta questão
-  state.timeLeft = state.config.timePerQuestion + (state.timeBonusCarry || 0);
+
+  const base  = state.config.timePerQuestion || 20;
+  const carry = (state.timeBonusCarry || 0); // pode ser positivo ou negativo
+  // Garante pelo menos 1 segundo de largada
+  state.timeLeft = Math.max(1, base + carry);
+
   elQTimer.textContent = String(state.timeLeft);
   renderTimeBonusBadge();
 
   state.timer = setInterval(()=>{
     state.timeLeft--;
     elQTimer.textContent = String(state.timeLeft);
-    if(state.timeLeft<=0){ stopTimer(); showAnswer(false); }
-  },1000);
+    elQTimer.toggleAttribute('data-low', state.timeLeft <= 5);
+
+    if (state.timeLeft <= 0) {
+      stopTimer();
+      gameOver(); // acabou o tempo => GAME OVER
+    }
+  }, 1000);
 }
 
-function stopTimer(){ if(state.timer){ clearInterval(state.timer); state.timer=null } }
+function stopTimer(){
+  if(state.timer){
+    clearInterval(state.timer);
+    state.timer=null;
+  }
+}
 
+// ================= ANSWER =================
 function showAnswer(fromConfirm){
+  if (state.gameOver) return;
+
   stopTimer();
+
   const q = state.roundQuestions[state.currentIndex];
   const items = $$('#q-options li');
+
+  // pinta correto/errado
   items.forEach(li=>{
     const idx = parseInt(li.dataset.idx,10);
     if(idx===q.correta) li.classList.add('correct');
@@ -143,27 +185,29 @@ function showAnswer(fromConfirm){
   let correct = (state.selectedIndex===q.correta);
   if(fromConfirm===false && state.selectedIndex===null) correct=false;
 
-  if(correct){
+  if (correct) {
     state.hits++;
-    const speedBonus = Math.round((state.timeLeft/state.config.timePerQuestion)*state.config.speedBonusMax);
-    const gained = state.config.basePoints + speedBonus;
+
+    // Pontuação normal: base + velocidade (NÃO descontamos pontos ao errar)
+    const speedBonus = Math.round(
+      (state.timeLeft / (state.config.timePerQuestion || 20)) * (state.config.speedBonusMax || 50)
+    );
+    const gained = (state.config.basePoints || 100) + speedBonus;
     state.score += gained;
-    elQFeed.textContent = `✅ Correto! +${state.config.basePoints} (básico) +${speedBonus} (velocidade). ${q.explicacao||''}`;
 
-    // atualiza bônus de tempo PARA A PRÓXIMA questão
-    state.timeBonusCarry = Math.min(
-      (state.timeBonusCarry || 0) + (state.config.timeBonusPerHit || 0),
-      state.config.timeBonusMax || 0
-    );
+    elQFeed.textContent =
+      `✅ Correto! +${state.config.basePoints || 100} (básico) +${speedBonus} (velocidade). ${q.explicacao || ''}`;
+
+    // ✔ Próxima questão: +5s cumulativo, sem limite
+    state.timeBonusCarry = (state.timeBonusCarry || 0) + 5;
+
   } else {
-    elQFeed.textContent = `❌ Resposta incorreta. ${q.explicacao||''}`;
+    elQFeed.textContent = `❌ Resposta incorreta. ${q.explicacao || ''}`;
 
-    // errou? decai o carry
-    state.timeBonusCarry = Math.max(
-      0,
-      (state.timeBonusCarry || 0) - (state.config.timeBonusDecayOnWrong || 0)
-    );
+    // ✔ Próxima questão: -5s cumulativo (pode ficar negativo)
+    state.timeBonusCarry = (state.timeBonusCarry || 0) - 5;
   }
+
   renderTimeBonusBadge();
 
   elQScore.textContent = String(state.score);
@@ -173,34 +217,121 @@ function showAnswer(fromConfirm){
 
 function nextQuestion(){
   state.currentIndex++;
-  if(state.currentIndex>=state.roundQuestions.length) return finishRound();
+  if(state.currentIndex>=state.roundQuestions.length) return finishRound(false);
   renderQuestion();
 }
 
-function finishRound(){
+// ================= RESULT / RANKING =================
+function finishRound(wasGameOver){
   hide(screenGame); show(screenResult);
+
   const total = state.roundQuestions.length;
   elRHits.textContent = String(state.hits);
   elRTot.textContent  = String(total);
   elRScore.textContent= String(state.score);
 
-  const best = Number(localStorage.getItem('quiz_best')||'0');
-  if(state.score>best){ localStorage.setItem('quiz_best', String(state.score)); elRBest.textContent = String(state.score)+' (novo recorde!)'; }
-  else { elRBest.textContent = String(best); }
+  elRTitle.textContent = wasGameOver ? 'GAME OVER' : 'Resultado';
 
-  const msg = encodeURIComponent(`Terminei o Quiz de Tecnologia da AxionTechI9! Pontos: ${state.score} | Acertos: ${state.hits}/${total} — Tente também: ${location.href}`);
+  // best local
+  const best = Number(localStorage.getItem('quiz_best')||'0');
+  if(state.score>best){
+    localStorage.setItem('quiz_best', String(state.score));
+    elRBest.textContent = String(state.score)+' (novo recorde!)';
+  } else {
+    elRBest.textContent = String(best);
+  }
+
+  // ranking
+  saveToLeaderboard(state.score).then(renderLeaderboard);
+
+  // share
+  const msg = encodeURIComponent(
+    `${wasGameOver ? 'GAME OVER no' : 'Terminei o'} Quiz de Tecnologia da AxionTechI9! Pontos: ${state.score} | Acertos: ${state.hits}/${total} — Tente também: ${location.href}`
+  );
   elShare.href = `https://wa.me/?text=${msg}`;
 }
 
+function gameOver(){
+  state.gameOver = true;
+  // marca correto para dar um feedback mínimo visual
+  if (state.selectedIndex === null) {
+    const q = state.roundQuestions[state.currentIndex];
+    $$('#q-options li').forEach(li=>{
+      const idx = parseInt(li.dataset.idx,10);
+      if(idx===q.correta) li.classList.add('correct');
+    });
+  }
+  finishRound(true);
+}
+
+// ===== Leaderboard (localStorage) =====
+async function saveToLeaderboard(score){
+  let name = localStorage.getItem('quiz_player_name');
+  if(!name){
+    name = prompt('Digite seu nome para salvar seu recorde no ranking:') || 'Jogador';
+    name = name.trim().slice(0, 30) || 'Jogador';
+    localStorage.setItem('quiz_player_name', name);
+  }
+  const entry = { name, score, date: new Date().toISOString() };
+  const key = 'quiz_leaderboard';
+  const list = JSON.parse(localStorage.getItem(key) || '[]');
+
+  list.push(entry);
+  // ordena por score desc, desempate por mais recente
+  list.sort((a,b)=> b.score - a.score || new Date(b.date) - new Date(a.date));
+  const top = list.slice(0,10);
+  localStorage.setItem(key, JSON.stringify(top));
+}
+
+function renderLeaderboard(){
+  if(!elRBoard) return;
+  const key = 'quiz_leaderboard';
+  const list = JSON.parse(localStorage.getItem(key) || '[]');
+
+  if(list.length === 0){
+    elRBoard.innerHTML = '<p class="muted">Ainda não há entradas no ranking.</p>';
+    return;
+  }
+
+  const rows = list.map((r, i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${r.name}</td>
+      <td style="text-align:right">${r.score}</td>
+    </tr>
+  `).join('');
+
+  elRBoard.innerHTML = `
+    <h3>🏆 Ranking (Top 10)</h3>
+    <div style="overflow:auto">
+      <table style="width:100%;border-collapse:collapse;border:1px solid rgba(255,255,255,.06)">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.06)">#</th>
+            <th style="text-align:left;padding:8px;border-bottom:1px solid rgba(255,255,255,.06)">Jogador</th>
+            <th style="text-align:right;padding:8px;border-bottom:1px solid rgba(255,255,255,.06)">Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+// ================= EVENTS =================
 btnStart.addEventListener('click', async ()=>{
   hide(screenHome); show(screenGame);
   if(state.allQuestions.length===0){ await loadQuestions(); }
-  buildRound(); renderQuestion();
+  buildRound();
+  renderQuestion();
 });
 btnConfirm.addEventListener('click', ()=>showAnswer(true));
 btnNext.addEventListener('click', nextQuestion);
 btnRestart.addEventListener('click', ()=>{ hide(screenResult); show(screenHome); });
 
+// Teclado
 if(state.config.allowKeyboard){
   document.addEventListener('keydown',(ev)=>{
     if(screenGame.classList.contains('hidden')) return;
