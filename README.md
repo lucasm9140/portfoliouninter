@@ -1,106 +1,118 @@
-# 💼 Portfólio — Trabalho Acadêmico | UNINTER
+<h1 align="center">🧠 Portfólio Interativo — Lucas Matheus Rodrigues de Jesus</h1>
 
-Projeto desenvolvido como **trabalho acadêmico** na disciplina de **Fundamentos de Desenvolvimento de Software** do curso de **Análise e Desenvolvimento de Sistemas (UNINTER)**.  
+<p align="center">
+  <a href="https://lucasm9140.github.io/portfoliouninter/"><img src="https://img.shields.io/badge/🌐%20Acessar%20Portfólio-0047AB?style=for-the-badge&logo=github&logoColor=white"></a>
+</p>
 
-O objetivo do projeto é criar um **site de portfólio pessoal**, utilizando apenas **HTML, CSS e JavaScript**, aplicando os fundamentos da construção de páginas web estáticas e boas práticas de estruturação de código.
-
----
-
-## 🎯 Objetivo do Projeto
-
-Desenvolver um portfólio moderno e funcional que apresente:
-- Perfil e informações profissionais.
-- Habilidades técnicas e pessoais.
-- Projetos desenvolvidos ao longo da formação.
-- Formulário de contato funcional (HTML + JS).
-- Layout responsivo e organizado com CSS.
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/GitHub%20Pages-181717?style=for-the-badge&logo=githubpages&logoColor=white">
+</p>
 
 ---
 
-## 🧠 Tecnologias Utilizadas
+## 🧩 Sobre o Projeto
 
-| Tecnologia | Descrição |
-|-------------|------------|
-| **HTML5** | Estrutura semântica das páginas. |
-| **CSS3** | Estilização, layout responsivo e efeitos visuais. |
-| **JavaScript (ES6)** | Interatividade e manipulação dinâmica de elementos. |
+Este é o meu **portfólio interativo**, criado para apresentar meus projetos, habilidades e experimentos em **Desenvolvimento de Sistemas, Web e Inteligência Artificial**.  
+O site inclui páginas sobre mim, habilidades técnicas, contatos, além de um **Quiz de Tecnologia AxionTechI9**, totalmente funcional e hospedado no GitHub Pages.
 
----
-
-## 📁 Estrutura do Projeto
-
-portfolio-uninter/
-├── index.html # Página principal do portfólio
-├── sobre.html # Seção sobre mim
-├── projetos.html # Listagem de projetos e trabalhos
-├── contato.html # Formulário de contato
-├── css/
-│ └── style.css # Estilos principais
-├── js/
-│ └── script.js # Funções e interações
-└── assets/
-├── img/ # Imagens e ícones
-└── fonts/ # Fontes utilizadas
-
-yaml
-Copiar código
+> 💡 Objetivo: Demonstrar experiência prática com desenvolvimento front-end, lógica de programação e aplicações interativas.
 
 ---
 
-## 🚀 Como Executar o Projeto
+## 🚀 Tecnologias Utilizadas
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/lucasm9140/Portfolio-Academico-UNINTER.git
-   cd Portfolio-Academico-UNINTER
-Abra o arquivo principal:
+- 🧱 **HTML5** — Estrutura semântica e responsiva  
+- 🎨 **CSS3** — Layout moderno, clean e responsivo (modo escuro e claro)  
+- ⚙️ **JavaScript (ES6+)** — Interatividade e lógica de controle do quiz  
+- 📄 **JSON** — Armazenamento de perguntas do quiz  
+- ☁️ **GitHub Pages** — Hospedagem gratuita e estável do portfólio  
 
-bash
-Copiar código
-index.html
-👉 Dica: clique duas vezes no arquivo ou use a extensão Live Server no VS Code para uma visualização mais fluida.
+---
 
-✨ Funcionalidades
-Estrutura de páginas estáticas conectadas por navegação intuitiva.
+## 🗂️ Estrutura do Projeto
 
-Seção de projetos com descrições e links diretos.
+```bash
+portfoliouninter/
+├── assets/          # Estilos e scripts
+│   ├── quiz.css
+│   └── quiz.js
+├── img/             # Logos e ícones (favicon.png)
+├── quiz/            # Projeto interativo (Quiz AxionTechI9)
+│   ├── index.html
+│   ├── assets/
+│   └── data/questions.json
+├── index.html       # Página inicial
+├── sobre.html       # Sobre o autor
+├── habilidades.html # Habilidades e tecnologias
+├── projetos.html    # Lista de projetos e links
+└── contatos.html    # Formas de contato
+🧠 Quiz de Tecnologia — AxionTechI9
+🎮 Acesse direto: Quiz AxionTechI9
 
-Formulário de contato validado com JavaScript.
+Um quiz interativo que desafia o conhecimento em Programação, Redes, Segurança, IA e Cloud.
+O sistema foi desenvolvido inteiramente em JavaScript puro, com foco em lógica de tempo dinâmico (+5s / -5s), pontuação, ranking local e acessibilidade via teclado.
 
-Design responsivo, adaptável a diferentes dispositivos.
+Principais recursos:
 
-Layout limpo e moderno, aplicando princípios de UX/UI básicos.
+🕒 Sistema de tempo com bônus e penalidades
 
-🖼️ Demonstração (Exemplo)
-(Inclua aqui imagens ou GIFs do seu portfólio, se desejar)
+💯 Pontuação com base em velocidade e acertos
 
-Tela inicial
+🏆 Ranking local com armazenamento (localStorage)
 
-Seção “Sobre mim”
+⌨️ Suporte a teclado (1–4 + Enter)
 
-Lista de projetos
+📊 Histórico de tempo inicial por questão
 
-🧩 Aprendizados
-Durante o desenvolvimento, foram aplicados os seguintes conceitos:
+📱 Layout responsivo
 
-Estruturação de documentos HTML semânticos.
+💡 Como Executar Localmente
+Clone este repositório
 
-Utilização de seletores, classes e variáveis CSS.
 
-Organização de estilos em camadas (layout → componente → tema).
+git clone https://github.com/lucasm9140/portfoliouninter.git
+cd portfoliouninter
+Abra o projeto
 
-Manipulação do DOM com JavaScript.
+Basta abrir index.html diretamente no navegador, ou
 
-Responsividade e uso de media queries.
+Usar o Live Server no VS Code para visualizar com recarregamento automático.
 
-📄 Licença
-Este projeto é de caráter educacional e acadêmico, desenvolvido para fins de estudo e prática de fundamentos de desenvolvimento web.
-Licenciado sob os termos da MIT License.
+🤝 Como Contribuir
+Contribuições e melhorias são muito bem-vindas! 💬
+
+Faça um fork do projeto
+
+Crie uma nova branch:
+
+
+git checkout -b feature/nome-da-feature
+Realize suas alterações e faça commit:
+
+
+git commit -m "Adiciona nova feature ou correção"
+Envie sua branch:
+
+
+git push origin feature/nome-da-feature
+Abra um Pull Request detalhando as mudanças.
+
+✨ Sugestões de contribuição: novas perguntas no quiz, temas visuais, integração com API, leaderboard global, etc.
 
 👨‍💻 Autor
 Lucas Matheus Rodrigues de Jesus
-Estudante de Análise e Desenvolvimento de Sistemas — UNINTER
-📫 LinkedIn
-💻 GitHub
+Desenvolvedor Full Stack • Estudante de ADS • Criador da AxionTechI9
 
-✨ Desenvolvido como parte da disciplina “Fundamentos de Desenvolvimento de Software” — UNINTER. ✨
+📧 E-mail: lucasmateusdev@gmail.com
+💼 LinkedIn: linkedin.com/in/lucasm9140
+🌐 Portfólio: lucasm9140.github.io/portfoliouninter
+🚀 Marca: AxionTechI9
+
+🪪 Licença
+Este projeto é distribuído sob a Licença MIT.
+Sinta-se livre para usar, modificar e compartilhar, mantendo os créditos ao autor.
+
+<p align="center"> <i>“A tecnologia é a ponte entre ideias e soluções.”</i><br> — Dev. Lucas Matheus 🧠 </p> ```
