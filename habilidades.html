@@ -1,33 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Habilidades - Lucas Matheus</title> <!-- Título da página -->
-  <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habilidades — Lucas Matheus</title>
+  <link rel="icon" href="img/favicon.png" type="image/png"><link rel="stylesheet" href="style.css">
+  <meta name="description" content="Stack e habilidades técnicas de Lucas Matheus.">
 </head>
 <body>
-  <nav> <!-- Aqui vai o menu -->
-    <a href="index.html">Início</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="projetos.html">Projetos</a>
-    <a href="contatos.html">Contato</a>
+  <nav class="container">
+    <a href="index.html">Início</a><a href="sobre.html">Sobre</a>
+    <a aria-current="page">Habilidades</a><a href="projetos.html">Projetos</a><a href="contatos.html">Contato</a>
   </nav>
-  <header> <!-- Aqui vai o header -->
-    <h1>Habilidades</h1>
+
+  <header class="container" style="padding:24px 0;">
+    <h1><img src="img/favicon.png" alt="AxionTechI9" style="height:28px;border-radius:6px;margin-right:8px"> Habilidades</h1>
+    <p>Minha base técnica e ferramentas do dia a dia.</p>
   </header>
-  <section>
-    <img src="img/pandas.jpg" alt="Entre em contato" class="imagem-pagina">
-    <ul> <!-- Aqui vai a lista de habilidades -->
-      <li>💻 Linguagens: Python, Java, JavaScript, C</li>
-      <li>🌐 Web: HTML, CSS, React, Next.js</li>
-      <li>🧠 IA e Análise de Dados: Pandas, NumPy, Scikit-learn, TensorFlow</li>
-      <li>🛠️ Ferramentas: Git, VS Code, Colab, Eclipse</li>
-      <li>🗄️ Bancos de Dados: MySQL, SQLite, MongoDB</li>
-    </ul>
-  </section>
-<footer>
-    &copy; 2025 Lucas Matheus - Todos os direitos reservados.
+
+  <main class="container" style="padding-bottom:24px;">
+    <section class="card" style="padding:16px;">
+      <h2>Stack</h2>
+      <ul class="grid-list">
+        <li><strong>Front-end:</strong> HTML, CSS, JS</li>
+        <li><strong>Back-end:</strong> Java, Python</li>
+        <li><strong>Banco/Dados:</strong> MySQL, JSON</li>
+        <li><strong>Dev/Cloud:</strong> GitHub Pages, Git</li>
+        <li><strong>Testes/Qualidade:</strong> Selenium IDE (básico)</li>
+        <li><strong>IA/ML:</strong> Scikit-learn (básico)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container" style="padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-align:center;">
+    <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
   </footer>
+
+  <div class="axion-banner" id="axion-banner" style="position:fixed;bottom:20px;right:20px;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px;z-index:1000;">
+    <img src="img/favicon.png" alt="Logo AxionTechI9" style="height:32px;width:32px;border-radius:6px">
+    <span style="font-size:.9rem;color:#e6e6e6">Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener" style="color:#4cc9f0;font-weight:600;text-decoration:none;">AxionTechI9</a></span>
+    <button id="axion-close" title="Fechar banner" style="cursor:pointer;margin-left:6px;color:#aaa;font-size:.9rem;background:none;border:none;">✕</button>
+  </div>
+  <script>(function(){const b=document.getElementById('axion-banner'),c=document.getElementById('axion-close');if(localStorage.getItem('axion_banner_closed')==='true')b.style.display='none';c.addEventListener('click',()=>{b.style.opacity='0';setTimeout(()=>{b.style.display='none';},250);localStorage.setItem('axion_banner_closed','true');});})();</script>
 </body>
 </html>

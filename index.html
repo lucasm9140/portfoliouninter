@@ -1,36 +1,84 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head> <!-- Declaração da linguagem do documento -->
-  <meta charset="UTF-8"> <!-- caractere de codificação -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsividade -->
-  <title>Portfólio - Lucas Matheus</title> <!-- Título da página -->
-  <link rel="stylesheet" href="style.css"> <!-- link para o arquivo CSS -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio — Lucas Matheus</title>
+
+  <!-- favicon + css (RELATIVO) -->
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="description" content="Portfólio de Lucas Matheus — projetos, habilidades e contato.">
 </head>
-<body> <!-- corpo da página -->
-  <!-- nav bar com os links -->
-  <nav>
+<body>
+
+  <nav class="container">
     <a href="sobre.html">Sobre</a>
     <a href="habilidades.html">Habilidades</a>
     <a href="projetos.html">Projetos</a>
     <a href="contatos.html">Contato</a>
   </nav>
-  <header> <!-- Aqui vai o header com o nome e solicitando o usuario digitar o seu nome. -->
-    <h1>👋 Olá, eu sou Dev. Lucas Matheus</h1>
-    <p>Bem-vindo ao meu perfil no GitHub! Sou um desenvolvedor apaixonado por 
-      tecnologia e programação. 
-      Aqui você encontrará alguns dos projetos em que estou trabalhando, 
-      além de informações sobre mim e minhas habilidades.</p>
-    <p>Digite seu nome para receber uma saudação personalizada:</p>
-    <input type="text" id="nomeUsuario" placeholder="Digite seu nome">
-    <button onclick="saudacao()">Saudar</button>
-    <p id="mensagemSaudacao"></p> <!-- emite uma mensagemSaudacao personalizada. -->
-    <img src="img/fundo1.jpg" alt="Entre em contato" class="imagem-pagina">
+
+  <header class="container" style="padding:24px 0;">
+    <h1 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 8px;">
+      <img src="img/favicon.png" alt="AxionTechI9" style="height:32px;border-radius:6px">
+      👋 Olá, eu sou Dev. Lucas Matheus
+    </h1>
+
+    <p>Bem-vindo ao meu portfólio! ...</p>
+
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0;">
+      <label for="nomeUsuario" style="font-weight:600;">Digite seu nome para uma saudação:</label>
+      <input type="text" id="nomeUsuario" placeholder="Seu nome" aria-label="Seu nome">
+      <button type="button" onclick="saudacao()">Saudar</button>
+    </div>
+    <p id="mensagemSaudacao" aria-live="polite"></p>
+
+    <img src="img/fundo1.jpg" alt="Imagem de fundo do portfólio" class="imagem-pagina" style="margin-top:12px;">
   </header>
-<footer>
-    &copy; 2025 Lucas Matheus - Todos os direitos reservados.
+
+  <main class="container" style="padding-bottom:24px;">
+    <section class="card" style="padding:16px;margin-top:12px;">
+      <h2>Projetos em Destaque</h2>
+      <ul>
+        <li>🔹 <strong>ERP Estética Automotiva (Java)</strong></li>
+        <li>🔹 <strong>IA para Gestão Financeira (Python + ML)</strong></li>
+        <li>🔹 <strong>Quiz de Tecnologia (AxionTechI9)</strong></li>
+      </ul>
+      <p style="margin-top:10px;">
+        👉 Acesse também:
+        <a href="quiz/">Quiz de Tecnologia AxionTechI9</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="container" style="padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-align:center;">
+    <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
   </footer>
 
-<!-- Aqui vai o código JavaScript -->
+  <!-- Banner -->
+  <div class="axion-banner" id="axion-banner" style="position:fixed;bottom:20px;right:20px;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px;z-index:1000;box-shadow:0 0 12px rgba(0,0,0,.4);transition:transform .3s ease,opacity .3s ease;">
+    <img src="img/favicon.png" alt="Logo AxionTechI9" style="height:32px;width:32px;border-radius:6px">
+    <span style="font-size:.9rem;color:#e6e6e6">
+      Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener" style="color:#4cc9f0;font-weight:600;text-decoration:none;">AxionTechI9</a>
+    </span>
+    <button id="axion-close" title="Fechar banner" style="cursor:pointer;margin-left:6px;color:#aaa;font-size:.9rem;background:none;border:none;">✕</button>
+  </div>
+
+  <script>
+    (function(){
+      const banner = document.getElementById('axion-banner');
+      const closeBtn = document.getElementById('axion-close');
+      if(localStorage.getItem('axion_banner_closed') === 'true') banner.style.display = 'none';
+      closeBtn.addEventListener('click', ()=>{
+        banner.style.opacity = '0';
+        setTimeout(()=>{ banner.style.display = 'none'; }, 250);
+        localStorage.setItem('axion_banner_closed', 'true');
+      });
+    })();
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>

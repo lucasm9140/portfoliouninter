@@ -6,89 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Quiz de Tecnologia: Programação, Redes, Segurança, IA e Cloud. Teste seus conhecimentos!">
 
-  <!-- 🧠 Favicon -->
-  <link rel="icon" href="./img/favicon.png" type="image/png">
-
-  <!-- 🎨 Estilos -->
-  <link rel="stylesheet" href="./assets/quiz.css">
-
-  <style>
-    /* ===== Banner AxionTechI9 ===== */
-    .axion-banner {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 10px 14px;
-      z-index: 1000;
-      box-shadow: 0 0 12px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      animation: fadeIn 1s ease;
-    }
-    .axion-banner:hover { transform: scale(1.03); }
-    .axion-banner img {
-      height: 32px;
-      width: 32px;
-      border-radius: 6px;
-    }
-    .axion-banner span {
-      font-size: 0.9rem;
-      color: #e6e6e6;
-    }
-    .axion-banner a {
-      color: #4cc9f0;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .axion-banner a:hover { text-decoration: underline; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* botão de fechar o banner */
-    .axion-close {
-      cursor: pointer;
-      margin-left: 6px;
-      color: #aaa;
-      font-size: 0.9rem;
-      background: none;
-      border: none;
-      transition: color .2s;
-    }
-    .axion-close:hover { color: #f87171; }
-  </style>
+  <!-- Favicon + CSS (relativos à subpasta /quiz) -->
+  <link rel="icon" href="../img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="assets/quiz.css">
 </head>
 <body>
-
-  <!-- 🧩 Cabeçalho -->
+  <!-- Cabeçalho -->
   <header class="site-header container">
     <h1 style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <img src="./img/favicon.png" alt="AxionTechI9" style="height:32px;border-radius:6px">
+      <img src="../img/favicon.png" alt="AxionTechI9" style="height:32px;border-radius:6px">
       🧠 Quiz de Tecnologia — <span style="color:var(--accent)">AxionTechI9</span>
     </h1>
     <p class="subtitle">Programação • Redes • Segurança • IA • Cloud</p>
   </header>
 
   <div class="container">
-    <div class="ad-slot" id="ad-topo"><!-- anúncio topo --></div>
+    <div class="ad-slot" id="ad-topo"><!-- anúncio topo (opcional) --></div>
   </div>
 
-  <!-- 🧮 Conteúdo principal -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="container">
-
-    <!-- Tela inicial -->
+    <!-- TELA INICIAL (deve começar visível, sem .hidden) -->
     <section id="screen-home" class="card">
       <h2>Comece seu desafio</h2>
       <div class="grid">
         <div>
-          <label class="label">Categoria</label>
+          <label class="label" for="select-category">Categoria</label>
           <select id="select-category" class="input">
             <option value="todas">Todas</option>
             <option value="Programação">Programação</option>
@@ -99,7 +42,7 @@
           </select>
         </div>
         <div>
-          <label class="label">Nível</label>
+          <label class="label" for="select-level">Nível</label>
           <select id="select-level" class="input">
             <option value="misto">Misto</option>
             <option value="facil">Fácil</option>
@@ -108,21 +51,23 @@
           </select>
         </div>
         <div>
-          <label class="label">Nº de questões</label>
+          <label class="label" for="select-amount">Nº de questões</label>
           <select id="select-amount" class="input">
             <option>10</option>
             <option>15</option>
           </select>
         </div>
       </div>
+
       <div class="actions">
         <button id="btn-start" class="btn primary">Iniciar</button>
-        <a href="/portfoliouninter/" class="btn">Voltar ao Portfólio</a>
+        <a href="../" class="btn">Voltar ao Portfólio</a>
       </div>
+
       <p class="muted">Cada acerto vale 100 pontos + bônus de velocidade. Use o tempo com sabedoria!</p>
     </section>
 
-    <!-- Tela do jogo -->
+    <!-- TELA DO JOGO -->
     <section id="screen-game" class="card hidden" aria-live="polite">
       <div class="statusbar">
         <div>Questão <span id="q-number">1</span>/<span id="q-total">10</span></div>
@@ -132,16 +77,19 @@
         </div>
         <div>Pontos: <span id="q-score">0</span> <span id="q-timebonus" class="badge-timebonus"></span></div>
       </div>
+
       <h2 id="q-title">Pergunta aqui...</h2>
       <ul id="q-options" class="options" role="radiogroup" aria-label="Alternativas"></ul>
+
       <div class="actions">
         <button id="btn-confirm" class="btn primary">Confirmar</button>
         <button id="btn-next" class="btn hidden">Próxima</button>
       </div>
+
       <div id="q-feedback" class="feedback" aria-live="polite"></div>
     </section>
 
-    <!-- Tela de resultado -->
+    <!-- TELA DE RESULTADO -->
     <section id="screen-result" class="card hidden">
       <h2 id="r-title">Resultado</h2>
       <p><strong>Acertos:</strong> <span id="r-hits">0</span> / <span id="r-total">0</span></p>
@@ -157,13 +105,13 @@
       <div class="actions">
         <button id="btn-restart" class="btn">Jogar de novo</button>
         <a id="btn-share" class="btn" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>
-        <a class="btn" href="/portfoliouninter/" rel="noopener">Voltar ao Portfólio</a>
+        <a class="btn" href="../" rel="noopener">Voltar ao Portfólio</a>
       </div>
     </section>
   </main>
 
   <div class="container">
-    <div class="ad-slot" id="ad-rodape"><!-- anúncio rodapé --></div>
+    <div class="ad-slot" id="ad-rodape"><!-- anúncio rodapé (opcional) --></div>
   </div>
 
   <!-- Rodapé -->
@@ -171,26 +119,30 @@
     <p>Desenvolvido por Dev. Lucas Matheus — AxionTechI9</p>
   </footer>
 
-  <!-- 🌐 Banner flutuante AxionTechI9 -->
-  <div class="axion-banner" id="axion-banner">
-    <img src="./img/favicon.png" alt="Logo AxionTechI9">
-    <span>Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener">AxionTechI9</a></span>
-    <button class="axion-close" id="axion-close" title="Fechar banner">✕</button>
+  <!-- Banner flutuante -->
+  <div class="axion-banner" id="axion-banner" style="position:fixed;bottom:20px;right:20px;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px;z-index:1000;box-shadow:0 0 12px rgba(0,0,0,.4);transition:transform .3s ease,opacity .3s ease;">
+    <img src="../img/favicon.png" alt="Logo AxionTechI9" style="height:32px;width:32px;border-radius:6px">
+    <span style="font-size:.9rem;color:#e6e6e6">
+      Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener" style="color:#4cc9f0;font-weight:600;text-decoration:none;">AxionTechI9</a>
+    </span>
+    <button id="axion-close" title="Fechar banner" style="cursor:pointer;margin-left:6px;color:#aaa;font-size:.9rem;background:none;border:none;">✕</button>
   </div>
 
   <script>
-    // Permitir fechar o banner e lembrar no navegador
-    const banner = document.getElementById("axion-banner");
-    const closeBtn = document.getElementById("axion-close");
-    if(localStorage.getItem("axion_banner_closed") === "true") banner.style.display = "none";
-    closeBtn.addEventListener("click", ()=>{
-      banner.style.opacity = "0";
-      setTimeout(()=>{ banner.style.display = "none"; }, 300);
-      localStorage.setItem("axion_banner_closed", "true");
-    });
+    // fecha o banner e memoriza
+    (function(){
+      const banner = document.getElementById('axion-banner');
+      const closeBtn = document.getElementById('axion-close');
+      if(localStorage.getItem('axion_banner_closed') === 'true') banner.style.display = 'none';
+      closeBtn.addEventListener('click', ()=>{
+        banner.style.opacity = '0';
+        setTimeout(()=>{ banner.style.display = 'none'; }, 250);
+        localStorage.setItem('axion_banner_closed', 'true');
+      });
+    })();
   </script>
 
-  <!-- Configurações do Quiz -->
+  <!-- Config do quiz (se você usa QUIZ_CONFIG no quiz.js) -->
   <script>
     window.QUIZ_CONFIG = {
       timePerQuestion: 20,
@@ -200,6 +152,7 @@
     };
   </script>
 
-  <script src="./assets/quiz.js"></script>
+  <!-- JS do quiz (relativo à subpasta /quiz) -->
+  <script src="assets/quiz.js"></script>
 </body>
 </html>

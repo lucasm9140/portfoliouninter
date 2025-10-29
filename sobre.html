@@ -1,52 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head> 
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre - Lucas Matheus</title>
+  <title>Sobre — Lucas Matheus</title>
+  <link rel="icon" href="img/favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Sobre Lucas Matheus — desenvolvedor full stack e criador do Quiz AxionTechI9.">
 </head>
 <body>
-  <nav> <!-- Navegação, nav bar -->
+  <nav class="container">
     <a href="index.html">Início</a>
+    <a aria-current="page">Sobre</a>
     <a href="habilidades.html">Habilidades</a>
     <a href="projetos.html">Projetos</a>
     <a href="contatos.html">Contato</a>
   </nav>
-  <header>
-    <h1>Sobre Mim</h1> <!-- Titulo da pag. -->
-  </header>
-    <h2>AxionTechI9 — Soluções Tecnológicas & Segurança Eletrônica</h2>
-  <p>
-    Fundador da AxionTechI9, atuo com automação, CFTV, redes e desenvolvimento de sistemas
-    (web e IA) para negócios. Integro software + infraestrutura para entregar resultado
-    prático e mensurável.
-  </p>
-  <ul>
-    <li>Instalação e monitoramento de câmeras IP</li>
-    <li>Automação residencial & comercial</li>
-    <li>Sites, dashboards e integrações</li>
-  </ul>
-  <p><a class="btn" href="https://wa.me/55SEUNUM?text=Olá%20Lucas%2C%20vim%20pelo%20portfólio%20(AxionTechI9)">Falar com a AxionTechI9</a></p>
 
-  <section> <!-- Conteúdo principal -->
-    <p>🔭 [Projeto Final - Python-IA - Senai Taguatinga - 
-      Modelo de IA Gestão Financeira Empresarial e pessoal].
-  </p>
-    <p>🔭 [Projeto Final - Java - Sistema Web ERP - 
-    Agendamento e Gerenciamento de Serviços e Gestão financeira].
-  </p>
-    <p>👯 [Desenvolvendo Projeto - Python - Sistema ERP - 
-    Gestão de estoque, Vendas e Análise de vendas].
-  </p>
-  <p>👯 Estou procurando colaborar em projetos open source.</p>
-  <p>📚 Curso Técnico em Desenvolvimento de Sistemas no Senai SIG - Concluido.</p>
-  <p>📚 Cursando nivel superior - Análise e Desenvolvimento de Sistemas, EAD - Uninter.</p>
-  <p>📚 Cursando curso de inglês - Meu nível: Intermediário. </p>
-  <p>💬 Pergunte-me sobre [Tecnologias].</p>
-  </section>
-<footer>
-    &copy; 2025 Lucas Matheus - Todos os direitos reservados.
+  <header class="container" style="padding:24px 0;">
+    <h1><img src="img/favicon.png" alt="AxionTechI9" style="height:28px;border-radius:6px;margin-right:8px"> Sobre mim</h1>
+    <p>Sou o Lucas Matheus, desenvolvedor focado em Web, Java, Python e projetos com IA/ML. Gosto de criar soluções de ponta a ponta: do front ao backend, com atenção a UX e qualidade de código.</p>
+  </header>
+
+  <main class="container" style="padding-bottom:24px;">
+    <section class="card" style="padding:16px;">
+      <h2>O que me move</h2>
+      <ul>
+        <li>Resolver problemas reais com software simples e eficiente.</li>
+        <li>Aprender continuamente (cloud, testes, automação, IA).</li>
+        <li>Compartilhar conhecimento com projetos abertos.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container" style="padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-align:center;">
+    <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
   </footer>
+
+  <div class="axion-banner" id="axion-banner" style="position:fixed;bottom:20px;right:20px;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px;z-index:1000;">
+    <img src="img/favicon.png" alt="Logo AxionTechI9" style="height:32px;width:32px;border-radius:6px">
+    <span style="font-size:.9rem;color:#e6e6e6">Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener" style="color:#4cc9f0;font-weight:600;text-decoration:none;">AxionTechI9</a></span>
+    <button id="axion-close" title="Fechar banner" style="cursor:pointer;margin-left:6px;color:#aaa;font-size:.9rem;background:none;border:none;">✕</button>
+  </div>
+  <script>
+    (function(){const b=document.getElementById('axion-banner'),c=document.getElementById('axion-close');if(localStorage.getItem('axion_banner_closed')==='true')b.style.display='none';c.addEventListener('click',()=>{b.style.opacity='0';setTimeout(()=>{b.style.display='none';},250);localStorage.setItem('axion_banner_closed','true');});})();
+  </script>
 </body>
 </html>
