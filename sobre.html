@@ -4,46 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre — Lucas Matheus</title>
-  <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="./img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./style.css">
   <meta name="description" content="Sobre Lucas Matheus — desenvolvedor full stack e criador do Quiz AxionTechI9.">
 </head>
 <body>
-  <nav class="container">
-    <a href="index.html">Início</a>
-    <a aria-current="page">Sobre</a>
-    <a href="habilidades.html">Habilidades</a>
-    <a href="projetos.html">Projetos</a>
-    <a href="contatos.html">Contato</a>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="navbar-inner container">
+      <a href="./index.html" class="brand">
+        <img src="./img/favicon.png" alt="Logo">
+        <span>Lucas Matheus</span>
+      </a>
+      <div class="navlinks">
+        <a href="./index.html">Início</a>
+        <a aria-current="page" class="chip">Sobre</a>
+        <a href="./habilidades.html">Habilidades</a>
+        <a href="./projetos.html">Projetos</a>
+        <a href="./contatos.html">Contato</a>
+      </div>
+    </div>
   </nav>
 
-  <header class="container" style="padding:24px 0;">
-    <h1><img src="img/favicon.png" alt="AxionTechI9" style="height:28px;border-radius:6px;margin-right:8px"> Sobre mim</h1>
-    <p>Sou o Lucas Matheus, desenvolvedor focado em Web, Java, Python e projetos com IA/ML. Gosto de criar soluções de ponta a ponta: do front ao backend, com atenção a UX e qualidade de código.</p>
+  <!-- HEADER -->
+  <header class="hero container">
+    <div class="hero-card" style="max-width: 800px; margin: auto;">
+      <h1 class="hero-title">
+        <img src="./img/favicon.png" alt="AxionTechI9">
+        <span>Sobre mim</span>
+      </h1>
+      <p>Sou o Lucas Matheus, desenvolvedor com foco em <strong>Web, Java, Python e IA/ML</strong>. 
+      Adoro criar soluções completas — do front ao backend — com código organizado, 
+      boa experiência do usuário e impacto real.</p>
+    </div>
   </header>
 
-  <main class="container" style="padding-bottom:24px;">
-    <section class="card" style="padding:16px;">
+  <!-- CONTEÚDO -->
+  <main class="container" style="max-width: 800px; margin-bottom: 40px;">
+    <section class="card">
       <h2>O que me move</h2>
       <ul>
-        <li>Resolver problemas reais com software simples e eficiente.</li>
-        <li>Aprender continuamente (cloud, testes, automação, IA).</li>
-        <li>Compartilhar conhecimento com projetos abertos.</li>
+        <li>Resolver problemas reais com soluções simples e eficientes.</li>
+        <li>Aprender e evoluir todos os dias (cloud, automação, testes, IA).</li>
+        <li>Compartilhar conhecimento e inspirar outros desenvolvedores.</li>
       </ul>
     </section>
   </main>
 
-  <footer class="container" style="padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-align:center;">
-    <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
+    </div>
   </footer>
 
-  <div class="axion-banner" id="axion-banner" style="position:fixed;bottom:20px;right:20px;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 14px;z-index:1000;">
-    <img src="img/favicon.png" alt="Logo AxionTechI9" style="height:32px;width:32px;border-radius:6px">
-    <span style="font-size:.9rem;color:#e6e6e6">Visite <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener" style="color:#4cc9f0;font-weight:600;text-decoration:none;">AxionTechI9</a></span>
-    <button id="axion-close" title="Fechar banner" style="cursor:pointer;margin-left:6px;color:#aaa;font-size:.9rem;background:none;border:none;">✕</button>
+  <!-- Banner Axion -->
+  <div class="axion-banner" id="axion-banner">
+    <img src="./img/favicon.png" alt="Logo AxionTechI9">
+    <span>Visite 
+      <a href="https://axiontechi9.github.io/" target="_blank" rel="noopener">AxionTechI9</a>
+    </span>
+    <button id="axion-close" title="Fechar banner">✕</button>
   </div>
-  <script>
-    (function(){const b=document.getElementById('axion-banner'),c=document.getElementById('axion-close');if(localStorage.getItem('axion_banner_closed')==='true')b.style.display='none';c.addEventListener('click',()=>{b.style.opacity='0';setTimeout(()=>{b.style.display='none';},250);localStorage.setItem('axion_banner_closed','true');});})();
-  </script>
+
+  <!-- JS Global -->
+  <script src="./script.js"></script>
+
 </body>
 </html>
