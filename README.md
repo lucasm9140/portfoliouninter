@@ -113,6 +113,4 @@ Desenvolvedor Full Stack • Estudante de ADS • Criador da AxionTechI9
 
 🪪 Licença
 Este projeto é distribuído sob a Licença MIT.
-Sinta-se livre para usar, modificar e compartilhar, mantendo os créditos ao autor.
-
-<p align="center"> <i>“A tecnologia é a ponte entre ideias e soluções.”</i><br> — Dev. Lucas Matheus 🧠 </p> ```
+Sinta-se livre para usar, modificar e compartilhar, mantendo os créditos ao autor.``
