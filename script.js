@@ -15,11 +15,21 @@ window.saudacao = function saudacao(){
   }
 
   const hora = new Date().getHours();
-  const periodo = hora < 12 ? 'bom dia' :
-                  hora < 18 ? 'boa tarde' : 'boa noite';
+let periodo = '';
+let artigo = ''; // um / uma
 
-  msg.textContent = `Olá, ${nome}! Tenha um ${periodo} e boas explorações pelo meu portfólio 🚀`;
-  msg.style.color = 'var(--text)';
+  if (hora < 12) {
+    periodo = 'bom dia';
+    artigo = 'um';
+  } else if (hora < 18) {
+    periodo = 'boa tarde';
+    artigo = 'uma';
+  } else {
+    periodo = 'boa noite';
+    artigo = 'uma';
+  }
+
+$msg.textContent = `Olá, ${nome}! Tenha ${artigo} ${periodo} e boas explorações pelo meu portfólio 🚀`;
 
   localStorage.setItem('portfolio_nome', nome);
 };
