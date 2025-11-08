@@ -15,21 +15,15 @@ window.saudacao = function saudacao(){
   }
 
   const hora = new Date().getHours();
-let periodo = '';
-let artigo = ''; // um / uma
+  let periodo = '';
+  let artigo  = '';
 
-  if (hora < 12) {
-    periodo = 'bom dia';
-    artigo = 'um';
-  } else if (hora < 18) {
-    periodo = 'boa tarde';
-    artigo = 'uma';
-  } else {
-    periodo = 'boa noite';
-    artigo = 'uma';
-  }
+  if (hora < 12)       { periodo = 'bom dia';   artigo = 'um';  }
+  else if (hora < 18)  { periodo = 'boa tarde'; artigo = 'uma'; }
+  else                 { periodo = 'boa noite'; artigo = 'uma'; }
 
-  $msg.textContent = `Olá, ${nome}! Tenha ${artigo} ${periodo} e boas explorações pelo meu portfólio 🚀`;
+  msg.textContent = `Olá, ${nome}! Tenha ${artigo} ${periodo} e boas explorações pelo meu portfólio 🚀`;
+  msg.style.color = 'var(--text)';
 
   localStorage.setItem('portfolio_nome', nome);
 };
@@ -38,7 +32,7 @@ let artigo = ''; // um / uma
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('nomeUsuario');
   const salvo = localStorage.getItem('portfolio_nome');
-  if(salvo && input){
+  if (salvo && input){
     input.value = salvo;
     window.saudacao();
   }

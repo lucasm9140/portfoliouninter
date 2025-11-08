@@ -55,7 +55,14 @@
       <!-- Botões principais -->
       <div class="cta-row">
         <a class="btn success" href="#projetos"><i class="ph-lightning"></i> Ver projetos</a>
-        <a class="btn" href="./assets/cv/curriculodevlucas.2025-11-06.pdf" download><i class="ph-file-arrow-down"></i> Baixar CV</a>
+        <!-- Abrir em nova aba (melhor UX) -->
+        <a class="btn" href="./assets/cv/curriculodevlucas.2025-11-06.pdf" target="_blank" rel="noopener">
+          <i class="ph-file-pdf"></i> Ver CV (PDF)
+        </a>
+        <!-- Forçar download com nome bonito -->
+        <a class="btn" href="./assets/cv/curriculodevlucas.2025-11-06.pdf" download="CV-Lucas-Matheus.pdf">
+          <i class="ph-file-arrow-down"></i> Baixar CV
+        </a>
         <a class="btn" href="./quiz/"><i class="ph-game-controller"></i> Quiz AxionTechI9</a>
         <a class="btn" href="mailto:axiontech.atendimentos@gmail.com"><i class="ph-envelope"></i> Enviar e-mail</a>
         <a class="btn" href="https://wa.me/5561991400296" target="_blank"><i class="ph-whatsapp-logo"></i> WhatsApp</a>
@@ -109,6 +116,6 @@
   </div>
 
   <!-- ✅ Script -->
-  <script src="./script.js?v=5" defer></script>
+  <script src="./script.js?v=11" defer></script>
 </body>
 </html>
