@@ -106,8 +106,8 @@ Abra um Pull Request detalhando as mudanças.
 Lucas Matheus Rodrigues de Jesus
 Desenvolvedor Full Stack • Estudante de ADS • Criador da AxionTechI9
 
-📧 E-mail: lucasmateusdev@gmail.com
-💼 LinkedIn: linkedin.com/in/lucasm9140
+📧 E-mail: axiontech.atendimentos@gmail.com
+💼 LinkedIn: https://www.linkedin.com/in/lucas-matheus-285890279/
 🌐 Portfólio: lucasm9140.github.io/portfoliouninter
 🚀 Marca: AxionTechI9
 
