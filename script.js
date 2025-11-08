@@ -29,7 +29,7 @@ let artigo = ''; // um / uma
     artigo = 'uma';
   }
 
-  msg.textContent = `Olá, ${nome}! Tenha ${artigo} ${periodo} e boas explorações pelo meu portfólio 🚀`;
+msg.textContent = `Olá, ${nome}! Tenha ${artigo} ${periodo} e boas explorações pelo meu portfólio 🚀`;
 
   localStorage.setItem('portfolio_nome', nome);
 };
