@@ -52,21 +52,38 @@
       </div>
       <p id="mensagemSaudacao" class="greeting" aria-live="polite"></p>
 
-      <!-- Botões principais -->
+            <!-- Botões principais -->
       <div class="cta-row">
         <a class="btn success" href="#projetos"><i class="ph-lightning"></i> Ver projetos</a>
-        <!-- Abrir em nova aba (melhor UX) -->
+
+        <!-- Ver e Baixar CV -->
         <a class="btn" href="./assets/cv/curriculodevlucas.2025-11-06.pdf" target="_blank" rel="noopener">
           <i class="ph-file-pdf"></i> Ver CV (PDF)
         </a>
-        <!-- Forçar download com nome bonito -->
+
         <a class="btn" href="./assets/cv/curriculodevlucas.2025-11-06.pdf" download="CV-Lucas-Matheus.pdf">
           <i class="ph-file-arrow-down"></i> Baixar CV
         </a>
-        <a class="btn" href="./quiz/"><i class="ph-game-controller"></i> Quiz AxionTechI9</a>
-        <a class="btn" href="mailto:axiontech.atendimentos@gmail.com"><i class="ph-envelope"></i> Enviar e-mail</a>
-        <a class="btn" href="https://wa.me/5561991400296" target="_blank"><i class="ph-whatsapp-logo"></i> WhatsApp</a>
+
+        <!-- Quiz -->
+        <a class="btn" href="./quiz/" aria-label="Abrir Quiz de Tecnologia AxionTechI9">
+          <i class="ph-game-controller"></i> Quiz AxionTechI9
+        </a>
+
+        <!-- Enviar e-mail pelo Gmail (sem depender de cliente local) -->
+        <a class="btn" 
+          href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=axiontech.atendimentos@gmail.com&su=Contato%20via%20Portf%C3%B3lio&body=Ol%C3%A1%20Lucas%2C%0A%0Avi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre..."
+          target="_blank" rel="noopener">
+          <i class="ph-envelope"></i> Enviar e-mail (Gmail)
+        </a>
+
+        <!-- WhatsApp com mensagem pronta -->
+        <a class="btn" href="https://wa.me/5561991400296?text=Ol%C3%A1%20Lucas%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre..."
+          target="_blank" rel="noopener">
+          <i class="ph-whatsapp-logo"></i> Falar no WhatsApp
+        </a>
       </div>
+
 
       <div class="hero-media">
         <img src="./img/fundo1.jpg" alt="Fundo do portfólio" />
@@ -77,13 +94,50 @@
   <!-- ✅ CONTEÚDO PRINCIPAL -->
   <main class="container">
     <div class="grid">
-      <!-- Projetos -->
-      <section id="projetos" class="card">
-        <h2>Projetos em Destaque</h2>
-        <div class="project-list">
-          <!-- (projetos aqui — não alterei) -->
-        </div>
-      </section>
+      <section id="projetos" class="card" aria-labelledby="title-projetos">
+  <h2 id="title-projetos">Projetos em Destaque</h2>
+
+  <div class="project-list">
+    <!-- Projeto 1 -->
+    <article class="project" aria-labelledby="p1">
+      <div class="top">
+        <div class="title" id="p1">ERP Estética Automotiva (Java)</div>
+        <span class="chip">Java • OOP</span>
+      </div>
+      <p class="muted">Sistema com cadastro de clientes, funcionários, pedidos e finalização com método de pagamento — foco em relatórios e UX no console.</p>
+      <div class="meta">
+        <a class="btn" href="#" aria-label="Ver repositório ERP Java"><i class="ph-github-logo"></i> Repositório</a>
+        <a class="btn" href="#" aria-label="Ver documentação ERP Java"><i class="ph-notebook"></i> Docs</a>
+      </div>
+    </article>
+
+    <!-- Projeto 2 -->
+    <article class="project" aria-labelledby="p2">
+      <div class="top">
+        <div class="title" id="p2">IA para Gestão Financeira (Python + ML)</div>
+        <span class="chip">Python • ML</span>
+      </div>
+      <p class="muted">Previsão de gastos pessoais/empresariais com RandomForest e Regressão Linear, dashboards e alertas automáticos.</p>
+      <div class="meta">
+        <a class="btn" href="#" aria-label="Ver repositório IA de finanças"><i class="ph-github-logo"></i> Repositório</a>
+        <a class="btn" href="#" aria-label="Ver demo ao vivo"><i class="ph-play-circle"></i> Demo</a>
+      </div>
+    </article>
+
+    <!-- Projeto 3 -->
+    <article class="project" aria-labelledby="p3">
+      <div class="top">
+        <div class="title" id="p3">Quiz de Tecnologia (AxionTechI9)</div>
+        <span class="chip">Web • JS</span>
+      </div>
+      <p class="muted">Quiz interativo de fundamentos de tecnologia, com pontuação. Ideal para engajar leads.</p>
+      <div class="meta">
+        <a class="btn" href="./quiz/" aria-label="Abrir Quiz AxionTechI9"><i class="ph-game-controller"></i> Acessar</a>
+        <a class="btn" href="#" aria-label="Ver roteiro de perguntas"><i class="ph-list-numbers"></i> Perguntas</a>
+      </div>
+    </article>
+  </div>
+</section>
 
       <!-- Espaço anúncios -->
       <aside class="card">

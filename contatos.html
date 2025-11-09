@@ -1,69 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato - Lucas Matheus</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato — Lucas Matheus</title>
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Fale com Lucas Matheus — formulário de contato." />
+  <style>
+    /* Banner de sucesso */
+    #sent-banner{
+      display:none; position:fixed; top:14px; left:50%; transform:translateX(-50%);
+      background: linear-gradient(135deg, #16a34a, #8ef0b3);
+      color:#052814; border:1px solid rgba(0,0,0,.15);
+      padding:10px 14px; border-radius:10px; box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:9999;
+      font-weight:600;
+    }
+    #sent-banner button{
+      margin-left:10px; border:none; background:transparent; cursor:pointer; font-weight:700;
+    }
+    /* Form mais bonito usando seu tema */
+    .contact-card{
+      max-width:720px; margin:24px auto; background:var(--card-2); border:1px solid var(--stroke);
+      border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+    }
+    .contact-card h1{ margin:0 0 8px }
+    .contact-card p{ color:var(--muted); margin:0 0 16px }
+    .contact-grid{ display:grid; gap:10px; grid-template-columns:1fr; }
+    @media (min-width:640px){ .contact-grid{ grid-template-columns:1fr 1fr } }
+    .contact-grid textarea{ grid-column:1/-1 }
+    .contact-card input, .contact-card textarea{
+      padding:10px; border-radius:10px; border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06); color:var(--text);
+    }
+    .contact-actions{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="navbar">
-    <div class="navbar-inner container">
-      <a href="./index.html" class="brand" aria-label="Página inicial">
-        <img src="./img/favicon.png" alt="Logo">
-        <span>Lucas Matheus</span>
-      </a>
-      <div class="navlinks">
-        <a href="./index.html">Início</a>
-        <a href="./sobre.html">Sobre</a>
-        <a href="./habilidades.html">Habilidades</a>
-        <a href="./projetos.html">Projetos</a>
-        <a href="./contatos.html" class="chip">Contato</a>
-      </div>
-    </div>
+  <nav class="container" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="habilidades.html">Habilidades</a>
+    <a href="projetos.html">Projetos</a>
+    <a aria-current="page">Contato</a>
   </nav>
 
-  <!-- HEADER / TÍTULO -->
-  <header class="hero container" style="padding-top: 30px;">
-    <div class="hero-card" style="max-width: 600px; margin: auto; text-align: center;">
-      <img src="./img/fundo1.jpg" alt="Lucas Matheus" class="perfil">
-      <h1>Entre em Contato</h1>
-      <p class="muted">Preencha o formulário abaixo ou me chame no WhatsApp.</p>
-    </div>
-  </header>
+  <!-- Banner de sucesso -->
+  <div id="sent-banner">
+    ✅ Mensagem enviada com sucesso! Obrigado pelo contato.
+    <button type="button" id="sent-close">×</button>
+  </div>
 
-  <!-- FORMULÁRIO -->
-  <main class="container" style="max-width: 600px; margin-bottom: 40px;">
-    <section class="card">
-      <form action="#" method="post">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+  <main class="container">
+    <section class="contact-card">
+      <h1>Contato</h1>
+      <p>Preencha o formulário abaixo ou fale comigo pelo WhatsApp.</p>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+      <!-- FormSubmit: envia direto para o e-mail sem backend -->
+      <form action="https://formsubmit.co/axiontech.atendimentos@gmail.com" method="POST">
+        <!-- campos -->
+        <div class="contact-grid">
+          <input type="text" name="nome" placeholder="Seu nome" required />
+          <input type="email" name="email" placeholder="Seu e-mail" required />
+          <textarea name="mensagem" placeholder="Sua mensagem" rows="6" required></textarea>
+        </div>
 
-        <label for="mensagem">Mensagem</label>
-        <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
+        <!-- configs ocultas -->
+        <input type="hidden" name="_subject" value="Contato do Portfólio — Lucas Matheus" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="true" />
+        <!-- redireciona de volta com flag de sucesso -->
+        <input type="hidden" name="_next" value="https://lucasm9140.github.io/portfoliouninter/contatos.html?enviado=1" />
+        <!-- honeypot anti-spam -->
+        <input type="text" name="_honey" style="display:none" />
 
-        <input type="submit" value="Enviar" class="btn primary" style="cursor:pointer;">
+        <div class="contact-actions">
+          <input class="btn primary" type="submit" value="Enviar mensagem" />
+          <a class="btn success" 
+             href="https://wa.me/5561991400296?text=Ol%C3%A1%20Lucas%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre..."
+             target="_blank" rel="noopener">
+            <i class="ph-whatsapp-logo"></i> WhatsApp
+          </a>
+          <a class="btn" href="index.html"><i class="ph-arrow-left"></i> Voltar ao Portfólio</a>
+        </div>
       </form>
     </section>
-
-    <div style="text-align:center; margin-top: 16px;">
-      <a class="btn success" href="https://wa.me/5561994087637" target="_blank" rel="noopener">
-        💬 Falar pelo WhatsApp
-      </a>
-    </div>
+    
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
-    </div>
+  <footer class="container" style="padding:18px 0;border-top:1px solid var(--stroke);text-align:center;">
+    <small>&copy; 2025 Lucas Matheus — Todos os direitos reservados.</small>
   </footer>
 
+  <script>
+    // Banner de sucesso quando ?enviado=1
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const ok = params.get('enviado');
+      const banner = document.getElementById('sent-banner');
+      const close  = document.getElementById('sent-close');
+      if(ok === '1' && banner){
+        banner.style.display = 'inline-flex';
+        close?.addEventListener('click', ()=> banner.style.display='none');
+        // limpa a querystring pra não ficar aparecendo sempre
+        if(history.replaceState){
+          const url = location.origin + location.pathname;
+          history.replaceState({}, '', url);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
+
