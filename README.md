@@ -11,6 +11,18 @@
   <img src="https://img.shields.io/badge/GitHub%20Pages-181717?style=for-the-badge&logo=githubpages&logoColor=white">
 </p>
 
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/home-desktop.png" alt="Home" width="460" />
+  <img src="assets/screenshots/projetos-desktop.png" alt="Projetos" width="460" />
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/home-mobile.jpeg" alt="Home-Mobile" width="460" />
+  <img src="assets/screenshots/projetos-mobile.jpeg" alt="Projetos-Mobile" width="460" />
+</p>
+
 ---
 
 ## 🧩 Sobre o Projeto
