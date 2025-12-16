@@ -63,68 +63,70 @@ portfoliouninter/
 ├── habilidades.html # Habilidades e tecnologias
 ├── projetos.html    # Lista de projetos e links
 └── contatos.html    # Formas de contato
-🧠 Quiz de Tecnologia — AxionTechI9
-🎮 Acesse direto: Quiz AxionTechI9
 
-Um quiz interativo que desafia o conhecimento em Programação, Redes, Segurança, IA e Cloud.
-O sistema foi desenvolvido inteiramente em JavaScript puro, com foco em lógica de tempo dinâmico (+5s / -5s), pontuação, ranking local e acessibilidade via teclado.
+```
+## 🧠 Quiz de Tecnologia — AxionTechI9
+## 🎮 Acesse direto: Quiz AxionTechI9
 
-Principais recursos:
+- Um quiz interativo que desafia o conhecimento em Programação, Redes, Segurança, IA e Cloud.
+- O sistema foi desenvolvido inteiramente em JavaScript puro, com foco em lógica de tempo dinâmico (+5s / -5s), pontuação, ranking local e acessibilidade via teclado.
 
-🕒 Sistema de tempo com bônus e penalidades
+## Principais recursos:
 
-💯 Pontuação com base em velocidade e acertos
+- 🕒 Sistema de tempo com bônus e penalidades
 
-🏆 Ranking local com armazenamento (localStorage)
+- 💯 Pontuação com base em velocidade e acertos
 
-⌨️ Suporte a teclado (1–4 + Enter)
+- 🏆 Ranking local com armazenamento (localStorage)
 
-📊 Histórico de tempo inicial por questão
+- ⌨️ Suporte a teclado (1–4 + Enter)
 
-📱 Layout responsivo
+- 📊 Histórico de tempo inicial por questão
 
-💡 Como Executar Localmente
-Clone este repositório
+- 📱 Layout responsivo
 
-
-git clone https://github.com/lucasm9140/portfoliouninter.git
-cd portfoliouninter
-Abra o projeto
-
-Basta abrir index.html diretamente no navegador, ou
-
-Usar o Live Server no VS Code para visualizar com recarregamento automático.
-
-🤝 Como Contribuir
-Contribuições e melhorias são muito bem-vindas! 💬
-
-Faça um fork do projeto
-
-Crie uma nova branch:
+## 💡 Como Executar Localmente
+  - Clone este repositório
 
 
-git checkout -b feature/nome-da-feature
-Realize suas alterações e faça commit:
+  - git clone https://github.com/lucasm9140/portfoliouninter.git
+  - cd portfoliouninter
+  - Abra o projeto
+
+  - Basta abrir index.html diretamente no navegador, ou
+
+  - Usar o Live Server no VS Code para visualizar com recarregamento automático.
+
+## 🤝 Como Contribuir
+- Contribuições e melhorias são muito bem-vindas! 💬
+
+- Faça um fork do projeto
+
+- Crie uma nova branch:
 
 
-git commit -m "Adiciona nova feature ou correção"
-Envie sua branch:
+- git checkout -b feature/nome-da-feature
+- Realize suas alterações e faça commit:
 
 
-git push origin feature/nome-da-feature
-Abra um Pull Request detalhando as mudanças.
+- git commit -m "Adiciona nova feature ou correção"
+- Envie sua branch:
 
-✨ Sugestões de contribuição: novas perguntas no quiz, temas visuais, integração com API, leaderboard global, etc.
 
-👨‍💻 Autor
-Lucas Matheus Rodrigues de Jesus
-Desenvolvedor Full Stack • Estudante de ADS • Criador da AxionTechI9
+- git push origin feature/nome-da-feature
+- Abra um Pull Request detalhando as mudanças.
 
-📧 E-mail: axiontech.atendimentos@gmail.com
-💼 LinkedIn: https://www.linkedin.com/in/lucas-matheus-285890279/
-🌐 Portfólio: lucasm9140.github.io/portfoliouninter
-🚀 Marca: AxionTechI9
+- ✨ Sugestões de contribuição: novas perguntas no quiz, temas visuais, integração com API, leaderboard global, etc.
 
-🪪 Licença
-Este projeto é distribuído sob a Licença MIT.
-Sinta-se livre para usar, modificar e compartilhar, mantendo os créditos ao autor.``
+## 👨‍💻 Autor
+- Lucas Matheus Rodrigues de Jesus
+- Desenvolvedor Full Stack • Estudante de ADS • Criador da AxionTechI9
+
+- 📧 E-mail: axiontech.atendimentos@gmail.com
+- 💼 LinkedIn: https://www.linkedin.com/in/lucas-matheus-285890279/
+- 🌐 Portfólio: lucasm9140.github.io/portfoliouninter
+- 🚀 Marca: AxionTechI9
+
+## 🪪 Licença
+- Este projeto é distribuído sob a Licença MIT.
+- Sinta-se livre para usar, modificar e compartilhar, mantendo os créditos ao autor.``
