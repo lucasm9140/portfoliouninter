@@ -13,14 +13,16 @@
 
 ## 📸 Screenshots
 
+## Desktop
 <p align="center">
-  <img src="assets/screenshots/home-desktop.png" alt="Home" width="420" />
-  <img src="assets/screenshots/projetos-desktop.png" alt="Projetos" width="420" />
+  <img src="assets/screenshots/home-desktop.png" alt="Home" width="400" />
+  <img src="assets/screenshots/projetos-desktop.png" alt="Projetos" width="400" />
 </p>
 
+## Mobile
 <p align="center">
-  <img src="assets/screenshots/home-mobile.jpeg" alt="Home-Mobile" width="420" />
-  <img src="assets/screenshots/projetos-mobile.jpeg" alt="Projetos-Mobile" width="420" />
+  <img src="assets/screenshots/home-mobile.jpeg" alt="Home-Mobile" width="320" />
+  <img src="assets/screenshots/projetos-mobile.jpeg" alt="Projetos-Mobile" width="320" />
 </p>
 
 ---
