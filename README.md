@@ -44,27 +44,6 @@ O site inclui páginas sobre mim, habilidades técnicas, contatos, além de um *
 - 📄 **JSON** — Armazenamento de perguntas do quiz  
 - ☁️ **GitHub Pages** — Hospedagem gratuita e estável do portfólio  
 
----
-
-## 🗂️ Estrutura do Projeto
-
-```bash
-portfoliouninter/
-├── assets/          # Estilos e scripts
-│   ├── quiz.css
-│   └── quiz.js
-├── img/             # Logos e ícones (favicon.png)
-├── quiz/            # Projeto interativo (Quiz AxionTechI9)
-│   ├── index.html
-│   ├── assets/
-│   └── data/questions.json
-├── index.html       # Página inicial
-├── sobre.html       # Sobre o autor
-├── habilidades.html # Habilidades e tecnologias
-├── projetos.html    # Lista de projetos e links
-└── contatos.html    # Formas de contato
-
-```
 ## 🧠 Quiz de Tecnologia — AxionTechI9
 ## 🎮 Acesse direto: Quiz AxionTechI9
 
