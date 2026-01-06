@@ -507,3 +507,52 @@ footer{
   .hero-card{ padding: 20px; }
   .card{ padding: 16px; }
 }
+/* ==========================
+   ✅ NAVBAR RESPONSIVE FIX
+   (mobile + desktop)
+========================== */
+
+/* Evita rolagem lateral por causa da navbar */
+html, body { overflow-x: hidden; }
+
+/* Desktop: melhora alinhamento e dá “cara pro” */
+.navbar-inner{
+  gap: 14px;
+}
+
+/* Permite quebra e evita corte no mobile */
+@media (max-width: 640px){
+  .navbar-inner{
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 12px 0;
+  }
+
+  .brand{
+    width: 100%;
+  }
+
+  .navlinks{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;      /* ✅ O principal */
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .navlinks a{
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+
+  /* chips não ficarem “grandes” demais */
+  .chip{
+    padding: 6px 10px;
+    font-size: .82rem;
+  }
+}
+@media (min-width: 900px){
+  .navlinks{ gap: 12px; }
+  .navlinks a{ padding: 9px 12px; }
+}
