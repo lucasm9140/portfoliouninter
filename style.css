@@ -556,3 +556,40 @@ html, body { overflow-x: hidden; }
   .navlinks{ gap: 12px; }
   .navlinks a{ padding: 9px 12px; }
 }
+/* ==========================
+   NAVLINKS: visual mais pro
+========================== */
+
+/* Todos os links do menu com “pill” discreta */
+.navlinks a{
+  border: 1px solid rgba(148,163,184,.18);
+  background: rgba(255,255,255,.04);
+  border-radius: 999px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+/* Hover mais elegante */
+.navlinks a:hover{
+  background: rgba(56,189,248,.10);
+  border-color: rgba(56,189,248,.22);
+  text-decoration: none;
+}
+
+/* Destaques (Contato e Currículos) com cara de CTA */
+.navlinks a.chip{
+  background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(14,165,233,.95));
+  color: #06101a;
+  border: none;
+  box-shadow: 0 14px 34px rgba(56,189,248,.18);
+}
+
+/* Hover do CTA */
+.navlinks a.chip:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 44px rgba(56,189,248,.24);
+}
+.navlinks a.active{
+  border-color: rgba(56,189,248,.45);
+  background: rgba(56,189,248,.12);
+}
